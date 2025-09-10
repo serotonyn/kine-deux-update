@@ -1,1 +1,44 @@
-asd
+🚀 Publishing a New Update
+
+Follow these steps when releasing a new version of the app.
+
+1. Set environment variables
+
+In PowerShell:
+
+$env:TAURI_SIGNING_PRIVATE_KEY="this can be found in keys/myapp.key (this is the private key)"
+$env:TAURI_SIGNING_PRIVATE_KEY_PASSWORD="123"
+
+
+⚠️ If you forget this step, the build won’t be signed correctly.
+
+2. Build the app
+yarn tauri build
+
+
+(or cargo tauri build depending on your setup)
+
+3. Generate latest.json
+
+Run the script in the repo that updates the updater manifest:
+
+yarn run generate-latest-json
+
+
+This will produce/update the latest.json file.
+
+4. Edit the notes field of latest.json
+
+This can be formatted as markdown
+
+5. Publish files to GitHub
+
+Commit and push the new build files.
+
+Upload the installer(s) (.exe, .sig, latest.json) and latest.json to your GitHub release.
+
+6. Verify
+
+Check that the new release is downloadable.
+
+Ensure the updater in the app detects the new version and shows the release notes.
